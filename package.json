@@ -1,0 +1,28 @@
+{
+  "name": "hstarorg.github.io",
+  "version": "0.0.1",
+  "description": "My custom website.",
+  "main": "index.html",
+  "scripts": {
+    "test": "test",
+    "start": "gulp dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hstarorg/hstarorg.github.io.git"
+  },
+  "keywords": [
+    "Website"
+  ],
+  "author": "Jay.M.Hu <hm910705@163.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hstarorg/hstarorg.github.io/issues"
+  },
+  "homepage": "https://github.com/hstarorg/hstarorg.github.io#readme",
+  "devDependencies": {
+    "browser-sync": "^2.11.2",
+    "del": "^2.2.0",
+    "gulp": "github:gulpjs/gulp#4.0"
+  }
+}
