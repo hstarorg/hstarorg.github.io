@@ -22,8 +22,10 @@
   "homepage": "https://github.com/hstarorg/hstarorg.github.io#readme",
   "devDependencies": {
     "browser-sync": "^2.11.2",
+    "connect-history-api-fallback": "^1.2.0",
     "del": "^2.2.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-concat": "^2.6.0"
+    "gulp-concat": "^2.6.0",
+    "gulp-notify": "^2.2.0"
   }
 }
