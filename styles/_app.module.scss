@@ -1,0 +1,40 @@
+$content-width: 1040px;
+$logo-width: 200px;
+$header-height: 64px;
+$footer-height: 70px;
+
+.layout {
+  background-color: #fff;
+}
+.header {
+  background: #fff;
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid #f0f0f0;
+
+  & > div {
+    display: flex;
+    width: $content-width;
+    margin: 0 auto;
+  }
+}
+
+.logo {
+  width: $logo-width;
+}
+
+.menu {
+  flex: 1;
+  justify-content: right;
+}
+
+.content {
+  width: $content-width;
+  margin: 0 auto;
+  margin-top: $header-height;
+  min-height: calc(100vh - $header-height - $footer-height);
+}
+
+.footer {
+  text-align: center;
+}
