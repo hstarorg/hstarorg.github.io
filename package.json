@@ -2,11 +2,6 @@
   "name": "hstarorg.github.io",
   "version": "0.0.1",
   "description": "My custom website.",
-  "main": "index.html",
-  "scripts": {
-    "test": "test",
-    "start": "gulp dev"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hstarorg/hstarorg.github.io.git"
@@ -20,12 +15,22 @@
     "url": "https://github.com/hstarorg/hstarorg.github.io/issues"
   },
   "homepage": "https://github.com/hstarorg/hstarorg.github.io#readme",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "12.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
   "devDependencies": {
-    "browser-sync": "^2.11.2",
-    "connect-history-api-fallback": "^1.2.0",
-    "del": "^2.2.0",
-    "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-notify": "^2.2.0"
+    "@types/node": "18.7.16",
+    "@types/react": "18.0.19",
+    "eslint": "8.23.0",
+    "eslint-config-next": "12.3.0",
+    "typescript": "4.8.3"
   }
 }
