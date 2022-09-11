@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import { Layout, Menu } from 'antd';
 import styles from '../styles/_app.module.scss';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const menuItems: { key: string; label: string; path?: string }[] = [
   {
@@ -22,7 +23,9 @@ function App({ Component, pageProps }) {
     <Layout className={styles.layout}>
       <Layout.Header className={styles.header}>
         <div>
-          <div className={styles.logo}>幻星 STUDIO</div>
+          <div className={styles.logo}>
+            <Link href="/">幻星的个人网站</Link>
+          </div>
           <Menu
             className={styles.menu}
             mode="horizontal"
@@ -41,10 +44,11 @@ function App({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout.Content>
       <Layout.Footer className={styles.footer}>
-        Powered by{' '}
+        Powered by&nbsp;
         <a href="https://github.com/hstarorg" target="_blank" rel="noopener noreferrer">
-          hstarorg
+          @hstarorg
         </a>
+        &nbsp;{new Date().getFullYear()}
       </Layout.Footer>
     </Layout>
   );

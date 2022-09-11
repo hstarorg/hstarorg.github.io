@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@ant-design/icons': ^4.7.0
   '@types/node': 18.7.16
   '@types/react': 18.0.19
   antd: ^4.23.1
@@ -15,6 +16,7 @@ specifiers:
   typescript: 4.8.3
 
 dependencies:
+  '@ant-design/icons': 4.7.0_biqbaboplfbrettd7655fr4n2y
   antd: 4.23.1_biqbaboplfbrettd7655fr4n2y
   next: 12.3.0_wgobgza36qebbzsbfctw2tohpy
   react: 18.2.0
