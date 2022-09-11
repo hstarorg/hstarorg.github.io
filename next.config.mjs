@@ -6,6 +6,8 @@ import withAntdLess from 'next-plugin-antd-less';
 const nextConfig = {
   ...withAntdLess({}),
   /* config options here */
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
     domains: ['landkit.goodthemes.co'],
   },
