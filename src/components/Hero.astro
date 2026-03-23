@@ -1,25 +1,49 @@
 ---
+interface Props {
+  productCount: number;
+}
+const { productCount } = Astro.props;
 ---
 <section class="relative overflow-hidden py-24 sm:py-32">
   <!-- 背景光斑 -->
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-500/8 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/4 right-0 w-[300px] h-[300px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
-      构建实用工具，<br class="sm:hidden" />
+      探索 Web3，构建工具，<br class="hidden sm:block" />
       <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
         驱动高效开发
       </span>
     </h1>
     <p class="text-lg text-zinc-400 max-w-2xl mx-auto mb-10">
-      HstarOrg 的开源产品与工具集合，专注于提升开发体验与效率。
+      HstarOrg 的开源项目集合 — 涵盖 Web3 & 区块链、应用服务与开发者工具，持续构建中。
     </p>
+
+    <!-- 统计 -->
+    <div class="flex items-center justify-center gap-8 sm:gap-12 mb-10">
+      <div class="text-center">
+        <div class="text-2xl font-bold text-white">{productCount}</div>
+        <div class="text-xs text-zinc-500 mt-1">开源项目</div>
+      </div>
+      <div class="w-px h-8 bg-zinc-800"></div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-white">3</div>
+        <div class="text-xs text-zinc-500 mt-1">领域方向</div>
+      </div>
+      <div class="w-px h-8 bg-zinc-800"></div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-white">10+</div>
+        <div class="text-xs text-zinc-500 mt-1">技术栈</div>
+      </div>
+    </div>
+
     <div class="flex items-center justify-center gap-4">
       <a
-        href="#products"
+        href="/products"
         class="inline-flex items-center px-6 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-medium text-sm transition-colors"
       >
-        浏览产品
+        浏览全部项目
       </a>
       <a
         href="https://github.com/hstarorg"

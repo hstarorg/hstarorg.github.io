@@ -12,7 +12,7 @@ const { title, description, image, demoUrl, repoUrl, tags } = Astro.props;
 ---
 <article class="group rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col">
   <!-- 截图区域 -->
-  <div class="aspect-video bg-zinc-800 overflow-hidden relative">
+  <div class="aspect-video bg-zinc-800 overflow-hidden relative cursor-zoom-in" data-lightbox data-src={image} data-title={title}>
     <img
       src={image}
       alt={title}

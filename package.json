@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "screenshots": "node scripts/screenshots.mjs",
+    "screenshots:new": "node scripts/screenshots.mjs --only-new"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
@@ -14,6 +16,12 @@
     "tailwindcss": "^4.2.2"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  },
+  "devDependencies": {
+    "playwright": "^1.58.2"
   }
 }

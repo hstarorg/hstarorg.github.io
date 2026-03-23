@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import CategorySection from '../components/CategorySection.astro';
+
+const allProducts = (await getCollection('products')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const categories = [
+  {
+    id: 'web3',
+    title: 'Web3 & Blockchain',
+    description: '智能合约、链上工具与去中心化应用探索',
+    icon: '⛓️',
+    key: 'web3' as const,
+  },
+  {
+    id: 'apps',
+    title: '应用与服务',
+    description: '面向用户的产品与在线服务',
+    icon: '🚀',
+    key: 'app' as const,
+  },
+  {
+    id: 'devtools',
+    title: '开发者工具',
+    description: '提升开发效率的库、框架与工具集',
+    icon: '🛠️',
+    key: 'devtool' as const,
+  },
+];
+---
+<Base title="Products - HstarOrg" description="HstarOrg 开源项目列表">
+  <!-- Page Header -->
+  <section class="relative overflow-hidden pt-16 pb-12">
+    <div class="absolute top-0 left-1/3 w-[400px] h-[300px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+        全部项目
+        <span class="text-zinc-500 text-lg font-normal ml-2">({allProducts.length})</span>
+      </h1>
+      <p class="text-zinc-400">涵盖 Web3 & 区块链、应用服务与开发者工具</p>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pb-24 space-y-20">
+    {categories.map((cat) => {
+      const products = allProducts
+        .filter((p) => p.data.category === cat.key)
+        .map((p) => p.data);
+      return (
+        <CategorySection
+          id={cat.id}
+          title={`${cat.title} (${products.length})`}
+          description={cat.description}
+          icon={cat.icon}
+          products={products}
+        />
+      );
+    })}
+  </div>
+</Base>

@@ -25,5 +25,44 @@ const { title = 'HstarOrg', description = 'HstarOrg - 产品与工具展示' } =
       <slot />
     </main>
     <Footer />
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm cursor-zoom-out" role="dialog">
+      <div class="relative max-w-5xl w-full mx-4">
+        <img id="lightbox-img" src="" alt="" class="w-full rounded-lg shadow-2xl" />
+        <p id="lightbox-title" class="text-center text-sm text-zinc-400 mt-3"></p>
+      </div>
+    </div>
+
+    <script>
+      const lightbox = document.getElementById('lightbox')!;
+      const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
+      const lbTitle = document.getElementById('lightbox-title')!;
+
+      document.querySelectorAll('[data-lightbox]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const src = (el as HTMLElement).dataset.src;
+          const title = (el as HTMLElement).dataset.title;
+          if (!src) return;
+          lbImg.src = src;
+          lbImg.alt = title || '';
+          lbTitle.textContent = title || '';
+          lightbox.classList.remove('hidden');
+          lightbox.classList.add('flex');
+        });
+      });
+
+      lightbox.addEventListener('click', () => {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+          lightbox.classList.add('hidden');
+          lightbox.classList.remove('flex');
+        }
+      });
+    </script>
   </body>
 </html>

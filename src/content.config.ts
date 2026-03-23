@@ -10,6 +10,8 @@ const products = defineCollection({
     demoUrl: z.string().url().optional(),
     repoUrl: z.string().url().optional(),
     tags: z.array(z.string()),
+    category: z.enum(['web3', 'app', 'devtool']),
+    featured: z.boolean().default(false),
     order: z.number().default(0),
   }),
 });

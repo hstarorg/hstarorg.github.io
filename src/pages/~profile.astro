@@ -1,0 +1,415 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const allProducts = (await getCollection('products')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const experiences = [
+  {
+    period: '2023.06 - 至今',
+    duration: '',
+    company: 'Web3 初创公司',
+    department: '',
+    roles: ['技术负责人', 'Full-Stack', 'Web3'],
+    highlights: [
+      '作为技术负责人，全面支撑公司业务研发与技术拓展，助力公司成长为细分领域 Top 级企业',
+      '发起并落地公司核心现金流业务，直接带来上亿级营收，实现技术驱动业务增长',
+      '深入 Starknet / EVM / TON 等多链生态，主导智能合约开发与 DApp 全栈交付',
+      '构建多链开发工具链与内部基础设施（日志平台、Registry 等），显著提升团队研发效能',
+    ],
+    projects: [
+      {
+        name: '核心现金流业务',
+        subtitle: '从 0 到 1 发起并落地',
+        desc: '敏锐捕捉业务机会，主导方案设计与技术落地，快速跑通商业闭环。该业务成为公司核心营收来源，累计贡献上亿级收入，验证了技术与业务双驱动的价值',
+      },
+      {
+        name: 'Chainkit / Tonkit / Web3 Platform SDK',
+        subtitle: '多链开发工具链',
+        desc: '面向 EVM、TON、Starknet 等主流链的业务开发工具集，封装链上读写、钱包管理、合约交互等通用能力，大幅降低多链 DApp 开发门槛',
+      },
+      {
+        name: 'Lograil / Light Registry',
+        subtitle: '内部基础设施',
+        desc: '自研轻量级日志管理平台与 Docker Registry，面向资源受限的初创团队场景，以极低成本实现生产级可观测性与容器管理能力',
+      },
+    ],
+  },
+  {
+    period: '2022.10 - 2023.06',
+    duration: '9 个月',
+    company: '2B SaaS 公司',
+    department: '',
+    roles: ['低代码架构师'],
+    highlights: [
+      '主导低代码平台核心架构设计，定义组件协议、渲染引擎与扩展机制',
+      '负责资产平台从 0 到 1 建设，实现组件/模板/区块的全生命周期管理与分发',
+      '推进平台标准化与开放能力建设，支撑多业务线快速接入',
+    ],
+    projects: [
+      {
+        name: '低代码引擎',
+        subtitle: '可视化应用搭建平台',
+        desc: '设计并实现低代码核心架构，包含 Schema 协议、渲染引擎、插件系统与物料体系。支持拖拽搭建、逻辑编排与多端发布，覆盖内部多条业务线',
+      },
+    ],
+  },
+  {
+    period: '2019.04 - 2022.09',
+    duration: '3 年 5 个月',
+    company: '蚂蚁集团',
+    department: '体验技术部',
+    roles: ['前端技术专家', 'Team Leader'],
+    highlights: [
+      '从 0 到 1 建设监管合规业务前端体系，设计中台组件架构，3 个月支撑 10+ BU 工作台上线',
+      '组建并管理金融核心前端团队（6 正式 + 近 40 外包），支撑 5 个业务子域、60+ 应用的持续迭代',
+      '主导"一域一平台"微前端解决方案，覆盖 3+ 团队 10+ 平台站点，节省人力 100+ 人天',
+      '横跨 Chair、移动端、中后台多技术栈，兼顾技术深度与业务交付效率',
+    ],
+    projects: [
+      {
+        name: '一域一平台',
+        subtitle: '微前端业务研发解决方案',
+        desc: '基于 DI 架构实现平台站点的高一致性与高灵活性，提供命令行 + Runtime + SDK + 脚手架的完整工程体系。小时级启动功能完备的平台站点，统一用户体验的同时保留业务灵活性',
+      },
+      {
+        name: '合规工作台',
+        subtitle: '领域驱动的中台组件架构',
+        desc: '将合规能力抽象为领域化、自包含的中台组件，组合即可快速交付 BU 级工作台。天级建设含 30+ 指标的数据大盘，技术架构深度贴合业务节奏',
+      },
+    ],
+  },
+  {
+    period: '2014.09 - 2019.04',
+    duration: '4 年 7 个月',
+    company: '新蛋科技成都公司',
+    department: 'MIS',
+    roles: ['全栈开发', '技术管理', 'DevOps'],
+    highlights: [
+      '以 C# 开发入职，自驱转型全栈（前端 + Node.js），成为公司前端技术核心骨干',
+      '独立设计并维护模块化业务研发平台 3 年（微前端先驱实践），支撑全公司电商运营平台',
+      '转型技术管理后带领 8 人团队完成海淘电商 App 全链路交付，沉淀完整 App 研发体系',
+      '内部技术讲师 & 前端面试官，培养 5+ 位核心研发人员',
+    ],
+    projects: [
+      {
+        name: 'Newegg Central 2.x',
+        subtitle: '微前端研发平台（2014-2017）',
+        desc: '公司 14 年即启动的微前端实践，实现模块动态加载、样式隔离、独立开发统一部署。从 AngularJS 演进到 Angular，见证并实践了前端工程化的完整演进',
+      },
+      {
+        name: 'tt海购',
+        subtitle: '海淘电商全链路交付',
+        desc: '主导 PC（React）+ App（React Native）+ 后端（.NET Core）全链路开发，落地多渠道打包、跨境支付、CPS、Hybrid 架构等能力，为主站 App 奠定技术基础',
+      },
+    ],
+  },
+  {
+    period: '2013.05 - 2014.09',
+    duration: '1 年 4 个月',
+    company: '软通动力',
+    department: '华为项目组',
+    roles: ['C#/.NET', 'CI/CD'],
+    highlights: [
+      '参与华为中大型报表系统研发，从主力开发成长为模块 Owner',
+      '主力搭建并维护 Jenkins 持续集成体系，推动团队 CI/CD 落地',
+    ],
+    projects: [],
+  },
+  {
+    period: '2011.11 - 2013.04',
+    duration: '1 年 5 个月',
+    company: '中昊天诚科技',
+    department: '',
+    roles: ['C#/.NET'],
+    highlights: [
+      '金融类企管系统核心研发，覆盖工作流、报表、WebOffice 等复杂业务场景',
+      '从核心开发成长为研发负责人（兼 PM），独立负责项目交付与团队协调',
+    ],
+    projects: [],
+  },
+];
+
+const skills = [
+  { name: 'TypeScript / JavaScript', level: 95 },
+  { name: 'React / Vue / Angular', level: 90 },
+  { name: 'Node.js / Hono / NestJS', level: 85 },
+  { name: 'Solidity / Cairo / Web3', level: 75 },
+  { name: 'Go', level: 65 },
+  { name: 'C# / .NET', level: 75 },
+  { name: 'Docker / DevOps / CI/CD', level: 70 },
+];
+
+const talks = [
+  {
+    year: '2017',
+    event: '成都前端大会',
+    title: 'Vue 开发那些事',
+    url: 'https://hstarorg.github.io/presentations/slides/vue-those-things/#/',
+  },
+  {
+    year: '2018',
+    event: 'FCC 月会',
+    title: 'Node 与 Gateway',
+    url: 'https://hstarorg.github.io/presentations/slides/node-and-gateway/#/',
+  },
+];
+
+const ossHighlights = [
+  {
+    category: 'Web3 & Blockchain',
+    color: 'from-violet-500 to-purple-500',
+    items: ['Starknet Lab', 'Chainkit', 'Tonkit', 'EVM Contract Lab', 'Web3 Tools', 'Web3 Platform SDK'],
+  },
+  {
+    category: '应用与服务',
+    color: 'from-emerald-500 to-cyan-500',
+    items: ['WeChat Pusher', 'Lograil', 'Light Registry', 'SecureNote', 'IdReveal'],
+  },
+  {
+    category: '开发者工具',
+    color: 'from-amber-500 to-orange-500',
+    items: ['Shadow Render', 'MF Loader', 'Nestkit', 'Bizify', 'Biz Utils', 'Yuque SDK'],
+  },
+];
+---
+<Base title="Profile - HstarOrg" description="胡敏 - Full-Stack & Web3 Developer，13+ 年开发经验">
+  <!-- Profile Hero -->
+  <section class="relative overflow-hidden py-20 sm:py-28">
+    <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-emerald-500/6 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+        <!-- Avatar -->
+        <div class="shrink-0">
+          <div class="w-28 h-28 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 p-[2px]">
+            <div class="w-full h-full rounded-full bg-zinc-950 flex items-center justify-center text-4xl font-bold text-emerald-400">
+              H
+            </div>
+          </div>
+        </div>
+        <!-- Info -->
+        <div class="text-center sm:text-left">
+          <h1 class="text-3xl sm:text-4xl font-bold mb-2">
+            胡敏
+            <span class="text-lg font-normal text-zinc-500 ml-2">Jay Hu</span>
+          </h1>
+          <p class="text-lg text-emerald-400 font-medium mb-3">Full-Stack & Web3 Developer</p>
+          <p class="text-zinc-400 max-w-xl mb-5 leading-relaxed">
+            13 年软件工程经验。从 .NET 后端到前端全栈，从蚂蚁集团微前端架构到 Web3 智能合约开发，
+            持续跨越技术边界。当前聚焦多链 DApp 开发与开发者工具链建设，累计产出 {allProducts.length}+ 开源项目。
+          </p>
+          <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3">
+            <a
+              href="https://github.com/hstarorg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-sm text-zinc-300 transition-colors"
+            >
+              <svg viewBox="0 0 16 16" class="w-4 h-4 fill-current" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              GitHub
+            </a>
+            <a
+              href="mailto:hm910705@163.com"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-sm text-zinc-300 transition-colors"
+            >
+              <svg viewBox="0 0 20 20" class="w-4 h-4 fill-current" aria-hidden="true">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+              </svg>
+              Email
+            </a>
+            <a
+              href="/products"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-700 hover:border-zinc-500 text-sm text-zinc-400 hover:text-white transition-colors"
+            >
+              查看项目 &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-24 space-y-16">
+    <!-- 个人优势 -->
+    <section>
+      <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-gradient-to-b from-emerald-400 to-cyan-400 rounded-full"></span>
+        个人优势
+      </h2>
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div class="rounded-lg bg-zinc-900/50 border border-zinc-800 p-5">
+          <div class="text-emerald-400 text-2xl mb-3">&#x2318;</div>
+          <h3 class="font-semibold text-white mb-2">全栈 + Web3</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">从 .NET 到前端全栈，再到 Solidity/Cairo 智能合约。横跨 Web2 与 Web3，覆盖 DApp 全链路交付能力</p>
+        </div>
+        <div class="rounded-lg bg-zinc-900/50 border border-zinc-800 p-5">
+          <div class="text-emerald-400 text-2xl mb-3">&#x2665;</div>
+          <h3 class="font-semibold text-white mb-2">开源驱动</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">{allProducts.length}+ 开源项目持续输出，覆盖多链工具链、应用服务与开发者基础设施。用开源验证技术判断，用产品思维打磨工具</p>
+        </div>
+        <div class="rounded-lg bg-zinc-900/50 border border-zinc-800 p-5">
+          <div class="text-emerald-400 text-2xl mb-3">&#x2691;</div>
+          <h3 class="font-semibold text-white mb-2">架构与落地</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">蚂蚁微前端架构 → 低代码平台架构 → Web3 工具链架构，擅长从 0 到 1 设计系统并带领团队高效交付</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section>
+      <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-gradient-to-b from-emerald-400 to-cyan-400 rounded-full"></span>
+        技术栈
+      </h2>
+      <div class="space-y-4">
+        {skills.map((skill) => (
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-sm text-zinc-300">{skill.name}</span>
+              <span class="text-xs text-zinc-500">{skill.level}%</span>
+            </div>
+            <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+              <div
+                class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500"
+                style={`width: ${skill.level}%`}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 开源项目概览 -->
+    <section>
+      <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-gradient-to-b from-emerald-400 to-cyan-400 rounded-full"></span>
+        开源项目概览
+      </h2>
+      <div class="grid gap-4 sm:grid-cols-3">
+        {ossHighlights.map((group) => (
+          <div class="rounded-lg bg-zinc-900/50 border border-zinc-800 p-5">
+            <div class={`text-xs font-medium px-2 py-0.5 rounded-full bg-gradient-to-r ${group.color} text-white inline-block mb-3`}>
+              {group.category}
+            </div>
+            <ul class="space-y-1.5">
+              {group.items.map((item) => (
+                <li class="text-sm text-zinc-400 flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-600 shrink-0"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div class="mt-4 text-center">
+        <a href="/products" class="text-sm text-zinc-500 hover:text-emerald-400 transition-colors">
+          查看全部 {allProducts.length} 个项目 &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- 工作 & 项目经历 -->
+    <section>
+      <h2 class="text-xl font-bold text-white mb-8 flex items-center gap-2">
+        <span class="w-1 h-6 bg-gradient-to-b from-emerald-400 to-cyan-400 rounded-full"></span>
+        工作 & 项目经历
+      </h2>
+
+      <div class="relative">
+        {/* 连续竖线 */}
+        <div class="absolute left-[10px] top-[28px] bottom-[28px] w-px bg-zinc-800 hidden sm:block"></div>
+
+        {experiences.map((exp, i) => (
+          <div class="relative sm:pl-10 pb-8 last:pb-0">
+            {/* 圆点 */}
+            <div class:list={[
+              'absolute left-[4px] top-[22px] w-[13px] h-[13px] rounded-full border-2 hidden sm:block',
+              i === 0 ? 'border-emerald-400 bg-emerald-400/20 shadow-[0_0_8px_rgba(52,211,153,0.3)]' : 'border-zinc-600 bg-zinc-950',
+            ]}></div>
+
+            {/* 内容卡片 */}
+            <div class="rounded-xl bg-zinc-900/50 border border-zinc-800 p-6">
+              {/* Header */}
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-white">
+                    {exp.company}
+                    {exp.department && <span class="text-zinc-500 font-normal"> / {exp.department}</span>}
+                  </h3>
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    {exp.roles.map((role) => (
+                      <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        {role}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div class="text-sm text-zinc-500 shrink-0 sm:text-right">
+                  <div>{exp.period}</div>
+                  {exp.duration && <div class="text-xs mt-0.5">{exp.duration}</div>}
+                </div>
+              </div>
+
+              {/* Highlights */}
+              <ul class="space-y-2">
+                {exp.highlights.map((h) => (
+                  <li class="text-sm text-zinc-400 flex gap-2.5">
+                    <span class="text-emerald-500 shrink-0 mt-1 text-[10px]">&#x25B8;</span>
+                    <span class="leading-relaxed">{h}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Projects */}
+              {exp.projects.length > 0 && (
+                <div class="space-y-3 mt-5 pt-5 border-t border-zinc-800/50">
+                  <div class="text-xs text-zinc-500 font-medium uppercase tracking-wider">核心项目</div>
+                  {exp.projects.map((proj) => (
+                    <div class="rounded-lg bg-zinc-800/30 border border-zinc-800/50 p-4">
+                      <h4 class="text-sm font-semibold text-white mb-1.5">
+                        {proj.name}
+                        <span class="text-zinc-500 font-normal ml-1.5">— {proj.subtitle}</span>
+                      </h4>
+                      <p class="text-xs text-zinc-400 leading-relaxed">{proj.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 演讲 & 分享 -->
+    <section>
+      <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-gradient-to-b from-emerald-400 to-cyan-400 rounded-full"></span>
+        演讲 & 分享
+      </h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {talks.map((talk) => (
+          <a
+            href={talk.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-600 p-5 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <span class="text-xs text-zinc-500">{talk.year} · {talk.event}</span>
+            <h3 class="text-white font-medium mt-1 group-hover:text-emerald-400 transition-colors">
+              {talk.title} <span class="text-zinc-600">↗</span>
+            </h3>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>

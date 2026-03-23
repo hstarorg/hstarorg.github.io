@@ -4,26 +4,77 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import ProductCard from '../components/ProductCard.astro';
 
-const products = (await getCollection('products')).sort(
+const allProducts = (await getCollection('products')).sort(
   (a, b) => a.data.order - b.data.order,
 );
+
+const featured = allProducts.filter((p) => p.data.featured).map((p) => p.data);
+
+const sections = [
+  {
+    title: '产品',
+    description: '全部开源项目，按领域分类浏览',
+    href: '/products',
+    icon: '📦',
+    stat: `${allProducts.length} 个项目`,
+  },
+  {
+    title: 'GitHub',
+    description: '查看更多开源仓库与贡献',
+    href: 'https://github.com/hstarorg',
+    icon: '🔗',
+    stat: 'hstarorg',
+    external: true,
+  },
+];
 ---
 <Base>
-  <Hero />
+  <Hero productCount={allProducts.length} />
 
-  <section id="products" class="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
-    <h2 class="text-2xl font-bold text-center mb-10">Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {products.map((product) => (
-        <ProductCard
-          title={product.data.title}
-          description={product.data.description}
-          image={product.data.image}
-          demoUrl={product.data.demoUrl}
-          repoUrl={product.data.repoUrl}
-          tags={product.data.tags}
-        />
-      ))}
-    </div>
-  </section>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pb-24 space-y-20">
+    <!-- 推荐项目 -->
+    <section>
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-white">推荐项目</h2>
+        <a href="/products" class="text-sm text-zinc-400 hover:text-emerald-400 transition-colors">
+          查看全部 &rarr;
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featured.map((product) => (
+          <ProductCard
+            title={product.title}
+            description={product.description}
+            image={product.image}
+            demoUrl={product.demoUrl}
+            repoUrl={product.repoUrl}
+            tags={product.tags}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- 板块导航 -->
+    <section>
+      <h2 class="text-xl sm:text-2xl font-bold text-white mb-8">探索更多</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {sections.map((s) => (
+          <a
+            href={s.href}
+            target={s.external ? '_blank' : undefined}
+            rel={s.external ? 'noopener noreferrer' : undefined}
+            class="group rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-600 p-6 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <div class="text-2xl mb-3">{s.icon}</div>
+            <h3 class="text-lg font-semibold text-white group-hover:text-emerald-400 transition-colors mb-1">
+              {s.title}
+              {s.external && <span class="text-zinc-600 text-sm ml-1">↗</span>}
+            </h3>
+            <p class="text-sm text-zinc-400 mb-3">{s.description}</p>
+            <span class="text-xs text-zinc-500">{s.stat}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
 </Base>

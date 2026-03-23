@@ -1,12 +1,30 @@
 ---
+const pathname = Astro.url.pathname;
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Products', href: '/products' },
+];
 ---
 <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-800/50">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <a href="/" class="text-lg font-bold tracking-tight text-white hover:text-emerald-400 transition-colors">
       HstarOrg
     </a>
-    <div class="flex items-center gap-6 text-sm">
-      <a href="/#products" class="text-zinc-400 hover:text-white transition-colors">产品</a>
+    <div class="flex items-center gap-5 sm:gap-6 text-sm">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'transition-colors',
+            (item.href === '/' ? pathname === '/' : pathname.startsWith(item.href))
+              ? 'text-white font-medium'
+              : 'text-zinc-400 hover:text-white',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
       <a
         href="https://github.com/hstarorg"
         target="_blank"
