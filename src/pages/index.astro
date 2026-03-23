@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const products = (await getCollection('products')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+<Base>
+  <Hero />
+
+  <section id="products" class="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
+    <h2 class="text-2xl font-bold text-center mb-10">Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((product) => (
+        <ProductCard
+          title={product.data.title}
+          description={product.data.description}
+          image={product.data.image}
+          demoUrl={product.data.demoUrl}
+          repoUrl={product.data.repoUrl}
+          tags={product.data.tags}
+        />
+      ))}
+    </div>
+  </section>
+</Base>

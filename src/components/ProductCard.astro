@@ -1,0 +1,67 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  demoUrl?: string;
+  repoUrl?: string;
+  tags: string[];
+}
+
+const { title, description, image, demoUrl, repoUrl, tags } = Astro.props;
+---
+<article class="group rounded-xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col">
+  <!-- 截图区域 -->
+  <div class="aspect-video bg-zinc-800 overflow-hidden relative">
+    <img
+      src={image}
+      alt={title}
+      class="w-full h-full object-cover"
+      loading="lazy"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+    />
+    <!-- 占位：产品名首字母 + 渐变背景 -->
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 items-center justify-center text-4xl font-bold text-white/30 hidden">
+      {title.charAt(0)}
+    </div>
+  </div>
+
+  <!-- 内容区域 -->
+  <div class="p-5 flex flex-col flex-1">
+    <h3 class="text-lg font-semibold text-white mb-1">{title}</h3>
+    <p class="text-sm text-zinc-400 mb-4">{description}</p>
+
+    <!-- 标签 -->
+    <div class="flex flex-wrap gap-2 mb-4">
+      {tags.map((tag) => (
+        <span class="bg-zinc-800 text-zinc-300 text-xs px-2 py-0.5 rounded-full">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <!-- 操作链接 -->
+    <div class="flex items-center gap-4 mt-auto pt-2 border-t border-zinc-800/50">
+      {demoUrl && (
+        <a
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-zinc-400 hover:text-emerald-400 transition-colors"
+        >
+          在线演示 ↗
+        </a>
+      )}
+      {repoUrl && (
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-zinc-400 hover:text-emerald-400 transition-colors"
+        >
+          源码 ↗
+        </a>
+      )}
+    </div>
+  </div>
+</article>

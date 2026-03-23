@@ -1,41 +1,19 @@
 {
   "name": "hstarorg.github.io",
+  "type": "module",
   "version": "0.0.1",
-  "description": "My custom website.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hstarorg/hstarorg.github.io.git"
-  },
-  "keywords": [
-    "Website"
-  ],
-  "author": "Jay.M.Hu <hm910705@163.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hstarorg/hstarorg.github.io/issues"
-  },
-  "homepage": "https://github.com/hstarorg/hstarorg.github.io#readme",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "antd": "^4.23.1",
-    "next": "12.3.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.0.8",
+    "tailwindcss": "^4.2.2"
   },
-  "devDependencies": {
-    "@types/node": "18.7.16",
-    "@types/react": "18.0.19",
-    "babel-plugin-import": "^1.13.5",
-    "eslint": "8.23.0",
-    "eslint-config-next": "12.3.0",
-    "next-plugin-antd-less": "^1.8.0",
-    "sass": "^1.54.9",
-    "typescript": "4.8.3"
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
   }
 }
