@@ -62,8 +62,8 @@
   50% { background-position: 100% 50%; }
 }
 .text-gradient-animated {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, #facc15, #f97316, #ef4444, #ec4899, #facc15);
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
