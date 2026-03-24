@@ -5,7 +5,6 @@ interface Props {
   id: string;
   title: string;
   description: string;
-  icon: string;
   products: {
     title: string;
     description: string;
@@ -16,15 +15,12 @@ interface Props {
   }[];
 }
 
-const { id, title, description, icon, products } = Astro.props;
+const { id, title, description, products } = Astro.props;
 ---
 <section id={id} class="scroll-mt-20">
-  <div class="flex items-center gap-3 mb-2">
-    <span class="text-2xl">{icon}</span>
-    <h2 class="text-xl sm:text-2xl font-bold text-white">{title}</h2>
-  </div>
-  <p class="text-sm text-zinc-500 mb-8">{description}</p>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <h2 class="text-lg font-bold text-white mb-1">{title}</h2>
+  <p class="text-sm text-zinc-500 mb-6">{description}</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {products.map((product) => (
       <ProductCard
         title={product.title}

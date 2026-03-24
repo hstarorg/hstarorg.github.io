@@ -6,20 +6,18 @@ const navItems = [
   { label: 'Products', href: '/products' },
 ];
 ---
-<header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-800/50">
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-    <a href="/" class="text-lg font-bold tracking-tight text-white hover:text-emerald-400 transition-colors">
-      HstarOrg
-    </a>
-    <div class="flex items-center gap-5 sm:gap-6 text-sm">
+<header class="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-zinc-800/50">
+  <nav class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+    <a href="/" class="font-bold text-white tracking-tight">HstarOrg</a>
+    <div class="flex items-center gap-6 text-sm">
       {navItems.map((item) => (
         <a
           href={item.href}
           class:list={[
             'transition-colors',
             (item.href === '/' ? pathname === '/' : pathname.startsWith(item.href))
-              ? 'text-white font-medium'
-              : 'text-zinc-400 hover:text-white',
+              ? 'text-white'
+              : 'text-zinc-500 hover:text-zinc-200',
           ]}
         >
           {item.label}
@@ -29,7 +27,7 @@ const navItems = [
         href="https://github.com/hstarorg"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-zinc-400 hover:text-white transition-colors"
+        class="text-zinc-500 hover:text-zinc-200 transition-colors"
       >
         GitHub
       </a>

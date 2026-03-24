@@ -1,10 +1,67 @@
 @import "tailwindcss";
 
-/* Focus visible for keyboard navigation */
+@layer base {
+  body {
+    background: #0a0a0a;
+  }
+}
+
+/* 动态渐变边框 */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card-hover {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--angle), transparent 60%, #3b82f6 78%, #8b5cf6 90%, transparent 100%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: rotate-border 3s linear infinite;
+}
+.card-hover:hover::before {
+  opacity: 1;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -12px rgba(59, 130, 246, 0.15);
+}
+
+@keyframes rotate-border {
+  to { --angle: 360deg; }
+}
+
+/* Hero 渐变流动 */
+@keyframes aurora {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+.aurora-blob {
+  animation: aurora 8s ease-in-out infinite;
+}
+.aurora-blob-delay {
+  animation: aurora 8s ease-in-out infinite reverse;
+  animation-delay: -4s;
+}
+
+/* Focus */
 @layer components {
   a:focus-visible,
   button:focus-visible {
-    outline: 2px solid #34d399;
+    outline: 2px solid #3b82f6;
     outline-offset: 2px;
     border-radius: 4px;
   }
