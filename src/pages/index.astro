@@ -7,20 +7,43 @@ import ProductCard from '../components/ProductCard.astro';
 const allProducts = (await getCollection('products')).sort(
   (a, b) => a.data.order - b.data.order,
 );
-const featured = allProducts.filter((p) => p.data.featured).map((p) => p.data);
+const featured = allProducts.filter((p) => p.data.featured).slice(0, 3).map((p) => p.data);
 ---
-<Base>
+<Base title="Jay Hu - HstarOrg" description="Full-Stack & Web3 Developer">
   <Hero />
 
-  <div class="max-w-5xl mx-auto px-5 pb-28 space-y-20">
+  <div class="max-w-5xl mx-auto px-5 pb-28 space-y-28">
+    <!-- 关于 -->
+    <section>
+      <h2 class="text-sm font-medium text-zinc-500 uppercase tracking-wider mb-6">About</h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="group rounded-xl border border-zinc-800/60 p-5 hover:border-blue-500/30 transition-colors">
+          <div class="text-2xl mb-3">🏗️</div>
+          <h3 class="text-sm font-semibold text-white mb-2">后端到全栈</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">从 C#/.NET 后端起步，逐步拓展到前端、Node.js、移动端。在蚂蚁集团主导微前端架构，带领 40+ 人团队。</p>
+        </div>
+        <div class="group rounded-xl border border-zinc-800/60 p-5 hover:border-violet-500/30 transition-colors">
+          <div class="text-2xl mb-3">⛓️</div>
+          <h3 class="text-sm font-semibold text-white mb-2">深入 Web3</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">现任 Web3 公司技术负责人，发起并落地上亿级营收业务。深入 Starknet / EVM / TON 多链生态。</p>
+        </div>
+        <div class="group rounded-xl border border-zinc-800/60 p-5 hover:border-pink-500/30 transition-colors">
+          <div class="text-2xl mb-3">🔧</div>
+          <h3 class="text-sm font-semibold text-white mb-2">造工具的人</h3>
+          <p class="text-xs text-zinc-500 leading-relaxed">长期活跃于开源社区，构建开发者工具、SDK 与基础设施。相信好的工具能放大工程师的价值。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 精选项目 -->
     <section>
       <div class="flex items-baseline justify-between mb-6">
-        <h2 class="text-lg font-bold text-white">推荐项目</h2>
-        <a href="/products" class="text-sm text-zinc-500 hover:text-blue-400 transition-colors">
-          全部 &rarr;
+        <h2 class="text-sm font-medium text-zinc-500 uppercase tracking-wider">Featured Projects</h2>
+        <a href="/products" class="text-sm text-zinc-600 hover:text-blue-400 transition-colors">
+          全部项目 &rarr;
         </a>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {featured.map((product) => (
           <ProductCard
             title={product.title}
@@ -30,6 +53,37 @@ const featured = allProducts.filter((p) => p.data.featured).map((p) => p.data);
             repoUrl={product.repoUrl}
             tags={product.tags}
           />
+        ))}
+      </div>
+    </section>
+
+    <!-- 经历 -->
+    <section>
+      <h2 class="text-sm font-medium text-zinc-500 uppercase tracking-wider mb-6">Experience</h2>
+      <div class="space-y-0 border-l border-zinc-800 ml-1">
+        {[
+          { company: 'Web3 初创公司', role: '技术负责人', period: '2023 - 至今', active: true },
+          { company: '2B SaaS 公司', role: '低代码架构师', period: '2022 - 2023', active: false },
+          { company: '蚂蚁集团', role: '前端技术专家 / TL', period: '2019 - 2022', active: false },
+          { company: '新蛋科技', role: '全栈 / 技术管理', period: '2014 - 2019', active: false },
+        ].map((exp) => (
+          <div class="pl-6 pb-6 last:pb-0 relative group">
+            <div class:list={[
+              'absolute left-[-4.5px] top-[6px] w-2 h-2 rounded-full transition-colors',
+              exp.active
+                ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]'
+                : 'bg-zinc-700 group-hover:bg-zinc-500',
+            ]}></div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+              <div>
+                <span class:list={['text-sm font-medium', exp.active ? 'text-white' : 'text-zinc-300']}>
+                  {exp.company}
+                </span>
+                <span class="text-xs text-zinc-600 ml-2">{exp.role}</span>
+              </div>
+              <span class="text-xs text-zinc-700">{exp.period}</span>
+            </div>
+          </div>
         ))}
       </div>
     </section>

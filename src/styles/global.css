@@ -34,27 +34,94 @@
   opacity: 1;
 }
 .card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px -12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px -12px rgba(59, 130, 246, 0.2);
 }
 
 @keyframes rotate-border {
   to { --angle: 360deg; }
 }
 
-/* Hero 渐变流动 */
+/* Aurora */
 @keyframes aurora {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-20px, 15px) scale(0.95); }
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  33% { transform: translate(40px, -30px) scale(1.1); opacity: 0.8; }
+  66% { transform: translate(-30px, 20px) scale(0.9); opacity: 0.5; }
 }
-
 .aurora-blob {
   animation: aurora 8s ease-in-out infinite;
 }
 .aurora-blob-delay {
   animation: aurora 8s ease-in-out infinite reverse;
   animation-delay: -4s;
+}
+
+/* 渐变文字动画 */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.text-gradient-animated {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* 打字机光标 */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: "|";
+  animation: blink 1s step-end infinite;
+  color: #3b82f6;
+  font-weight: 300;
+  margin-left: 2px;
+}
+
+/* 浮动动画 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes float-delay {
+  0%, 100% { transform: translateY(0px) rotate(12deg); }
+  50% { transform: translateY(-8px) rotate(12deg); }
+}
+.animate-float { animation: float 5s ease-in-out infinite; }
+.animate-float-delay { animation: float-delay 7s ease-in-out infinite; }
+
+/* 发光线条 */
+@keyframes line-glow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+.line-glow-effect {
+  position: relative;
+  overflow: hidden;
+}
+.line-glow-effect::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+  animation: line-glow 3s ease-in-out infinite;
+}
+
+/* 技术标签悬浮 */
+.tech-pill {
+  transition: all 0.3s ease;
+}
+.tech-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px -4px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.4);
 }
 
 /* Focus */
