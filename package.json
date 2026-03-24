@@ -11,6 +11,7 @@
     "screenshots:new": "node scripts/screenshots.mjs --only-new"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.0.8",
     "tailwindcss": "^4.2.2"
